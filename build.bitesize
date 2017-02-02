@@ -1,0 +1,13 @@
+project: Readerplu-dev
+environments:
+  - name: production
+    namespace: Readerplus-dev
+    deployment:
+      method: rolling-upgrade
+    services:
+      - name: node-app
+        #external_url: reader-dev.dev-bite.io
+        external_url: reader-dev.prsn-dev.io
+        port: 80 # this is the port number the application responds on in each container/instance/pod
+        ssl: "false"
+        replicas: 2

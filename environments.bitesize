@@ -1,0 +1,18 @@
+# see https://mycloud.atlassian.net/wiki/display/BITE/Jenkins
+project: Readerplus-dev
+components:
+  - name: nodev1
+    os: linux
+    dependencies:
+      - type: debian-package
+        package: nodejs
+    repository:
+      git: git@github.com:geethaka/nodejsdemo.git
+      branch: master
+    build:
+      - shell: sudo mkdir -p /app
+      - shell: sudo cp -rf * /app
+      - shell: sudo /usr/local/bin/fpm -s dir -n node-app --iteration $(date "+%Y%m%d%H%M%S") -t deb /app
+    artifacts:
+      - location: "*.deb"
+      

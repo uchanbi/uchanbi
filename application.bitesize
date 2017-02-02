@@ -1,0 +1,13 @@
+project: Readerplus-dev
+applications:
+  - name: nodev1
+    runtime: ubuntu-nodejs5x:1.2
+    version: "0.8.35"
+    dependencies:
+      - name: node-app 
+        type: debian-package
+        origin:
+          build: node-app
+        version: 1.0
+    command: "npm start"
+    
