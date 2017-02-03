@@ -1,5 +1,5 @@
 # see https://mycloud.atlassian.net/wiki/display/BITE/Jenkins
-project: Readerplus-dev
+project: readerplus
 components:
   - name: nodev1
     os: linux
@@ -15,4 +15,3 @@ components:
       - shell: sudo /usr/local/bin/fpm -s dir -n node-app --iteration $(date "+%Y%m%d%H%M%S") -t deb /app
     artifacts:
       - location: "*.deb"
-      
