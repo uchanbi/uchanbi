@@ -1,0 +1,32 @@
+<div class="col-sm-12">
+  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)"><span ng-bind-html="alert.msg"></span></alert>
+  <h2>Products</h2>
+  <div class="tool-bar">
+    <a class="btn btn-primary btn-labeled btn-sm" href="downloads/product-batch.csv">
+      <span class="btn-label glyphicon glyphicon-download"></span>
+      Download Batch Template
+    </a>
+    <div class="btn btn-primary btn-labeled btn-sm btn-file">
+      <csv-upload result="csv"></csv-upload>
+      <span class="btn-label glyphicon glyphicon-upload"></span>
+      Upload Batch
+    </div>
+    <button class="btn btn-primary btn-labeled btn-sm" ng-click="addProduct()">
+      <span class="btn-label glyphicon glyphicon-plus"></span>
+      Add Product
+    </button>
+  </div>
+  <br /><br /><br />
+</div>
+<div class="col-sm-12">
+  <div class="table-header clearfix">
+    <form class="form-inline pull-left" role="form">
+      <div class="form-group">
+        <label for="">Filter</label>
+        <input type="text" class="form-control input-sm" placeholder="Product Name" ng-model="productName">
+      </div>
+    </form>
+  </div>
+  <div class="gridStyle product-grid" ui-grid="gridOptions" ui-grid-pagination></div>
+  <div class="gridStyleMessage" ng-if="emptyCourseSections">{{emptyCourseSections}}</div>
+</div>

@@ -1,0 +1,77 @@
+<div class="modal-header">
+   <h3 ng-if="modalOpts.method === 'add'" class="modal-title">Create New {{modalOpts.role | capitalize}}</h3>
+   <h3 ng-if="modalOpts.method === 'edit'" class="modal-title">Edit {{newUser.roles[0] | capitalize}}</h3>
+   <h3 ng-if="modalOpts.method === 'delete'" class="modal-title">Delete {{newUser.roles[0] | capitalize}}</h3>
+</div>
+<div class="modal-body">
+  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+  <div class="form-group" ng-if="!modalOpts.role || modalOpts.role !== 'admin' && modalOpts.method !== 'delete'">
+    <label for="sectioname">Role</label>
+    <ui-select ng-model="newUser.role" theme="bootstrap" style="float:none; margin:0; width:265px">
+      <ui-select-match placeholder="Select a role">{{newUser.role | capitalize}}</ui-select-match>
+      <ui-select-choices repeat="role in roles | filter: $select.search">
+        <span ng-bind-html="role | capitalize"></span>
+      </ui-select-choices>
+    </ui-select>
+  </div>
+  <div class="row" ng-if="modalOpts.method === 'add' || modalOpts.method === 'edit'">
+    <div class="form-group col-md-6">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control input-md" name="firstName" placeholder="" required="" autofocus="" ng-model="newUser.firstName" maxlength="32"/>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="form-control input-md" name="lastName" placeholder="" required="" ng-model="newUser.lastName" maxlength="32"/>
+    </div>
+  </div>
+  <div class="row" ng-if="modalOpts.method === 'add'">
+    <div class="form-group col-md-6">
+      <label for="email">Email</label>
+    <input type="text" class="form-control input-md" name="email" placeholder="" required="" ng-model="newUser.email" />
+    </div>
+    <div class="form-group col-md-6">
+      <label for="password">Password</label>
+      <input type="password" class="form-control input-md" name="pasword" placeholder="" required="" ng-model="newUser.password" />
+    </div>
+  </div>
+  <div class="row" ng-if="modalOpts.method === 'add' && modalOpts.role === 'admin'">
+    <div class="form-group col-md-6">
+    <label for="name">Country</label>
+    <ui-select ng-model="newUser.countryCode" theme="bootstrap" style="float:none; margin:0;">
+      <ui-select-match placeholder="Select a country" class="drop-down-hit-area">{{$select.selected.name}}</ui-select-match>
+      <ui-select-choices repeat="country in countries | filter: {name: $select.search}">
+        <span ng-bind-html="country.name"></span>
+      </ui-select-choices>
+    </ui-select>
+    </div>
+  </div>
+  <div class="row" ng-if="modalOpts.method === 'edit'">
+     <div class="form-group col-md-12">
+      <label for="password">Password</label>
+      <input type="password" class="form-control input-md" name="pasword" placeholder="Leave blank to keep existing password" required="" ng-model="newUser.password" />
+    </div>
+  </div>
+  <div class="row" ng-if="newUser.role === 'student' && (modalOpts.method === 'add' || modalOpts.method === 'edit')">
+    <div class="form-group col-md-6">
+      <label for="sin">SIN</label>
+      <input type="text" class="form-control input-md" name="sin" placeholder="" ng-model="newUser.sin" />
+    </div>
+  </div>
+  <div class="row" ng-if="modalOpts.method === 'delete'">
+     <div class="form-group col-md-12">
+      <p>Permanently delete {{modalOpts.role}}?</p>
+    </div>
+  </div>
+</div>
+<div ng-if="!confirm" class="modal-footer">
+  <button ng-if="modalOpts.method === 'add' && modalOpts.role !== 'admin'" class="btn btn-primary" ng-click="save()">Save</button>
+  <button ng-if="modalOpts.method === 'add' && modalOpts.role === 'admin'" class="btn btn-primary" ng-click="saveAdmin()">Save</button>
+  <button ng-if="modalOpts.method === 'edit'" class="btn btn-primary" ng-click="update()">Update</button>
+  <button ng-if="modalOpts.method === 'delete'" class="btn btn-danger" ng-click="delete()">Delete</button>
+  <button class="btn btn-warning" ng-click="cancel()">Close</button>
+</div>
+<div ng-if="confirm" class="modal-footer">
+  <p>Are you sure you want to delete this user?</p>
+  <button class="btn btn-danger" ng-click="delete()">Yes</button>
+  <button class="btn" ng-click="cancelDelete()">No</button>
+</div>

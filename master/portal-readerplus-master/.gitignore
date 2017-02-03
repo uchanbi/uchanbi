@@ -1,0 +1,16 @@
+app/components
+node_modules
+.DS_Store
+test-build
+bower_components
+app/coverage
+test/coverage
+test/data/batch.csv
+test/data/user-batch.csv
+test/data/product-batch.csv
+test/data/bulk-enroll-sin.csv
+test/data/bulk-enroll.csv
+test/e2e/output
+*.log
+
+pearson-app-gloss-web-readerplus*.rpm

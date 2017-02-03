@@ -1,0 +1,41 @@
+{
+  "src_folders" : ["test/e2e"],
+  "page_objects_path" : "test/e2e/helpers",
+  "output_folder" : "test/e2e/output",
+  "output" : "false",
+  "selenium" : {
+    "start_process" : true,
+    "server_path" : "node_modules/selenium-server-standalone-jar/jar/selenium-server-standalone-2.45.0.jar",
+    "host" : "127.0.0.1",
+    "port" : 4444,
+    "cli_args" : {
+      "webdriver.chrome.driver" : "node_modules/.bin/chromedriver"
+    }
+  },
+
+  "test_settings" : {
+    "default" : {
+      "launch_url" : "http://localhost:3001",
+      "selenium_port"  : 4444,
+      "selenium_host"  : "localhost",
+      "silent": true,
+      "screenshots" : {
+        "enabled" : false,
+        "path" : ""
+      },
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true,
+        "chromeOptions" : {
+          "prefs": {
+            "download": {
+              "prompt_for_download": false,
+              "default_directory": "/tmp"
+            }
+          }
+        }
+      }
+    }
+  }
+}

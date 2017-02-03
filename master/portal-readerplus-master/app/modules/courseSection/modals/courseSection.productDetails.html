@@ -1,0 +1,21 @@
+<div class="modal-header">
+   <h3 class="modal-title">Title Details</h3>
+</div>
+<div class="modal-body container-fluid">
+  <div class="col-sm-4">
+    <img class="img-responsive img-thumbnail" ng-src="{{selectedProduct.coverImageURL.url}}" alt="Title Cover Image">
+  </div>
+  <div class="col-sm-8">
+    <p class="product-title">{{selectedProduct.title}}</p>
+    <p class="product-author">{{selectedProduct.author}}</p>
+    <p class="product-description">{{selectedProduct.description}}</p>
+    <p>Layout:</p>
+    <ul>
+        <li ng-repeat="layout in selectedProduct.layout" class="product-layout">{{layout | capitalize:true}}</li>
+    </ul>
+    <p class="product-allowed-navigation">Allowed page navigation: {{selectedProduct.allowedPageNavigation | capitalize}}</p>
+  </div>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-warning" ng-click="$dismiss()">Close</button>
+</div>

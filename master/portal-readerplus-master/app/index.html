@@ -1,0 +1,133 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <!-- build:build -->
+    <!-- endbuild -->
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>R+ Portal</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
+
+    <!-- build:css -->
+    <link rel="stylesheet" href="components/angular-ui-grid/ui-grid.css" />
+    <link rel="stylesheet" href="components/angular-ui-select/dist/select.min.css">
+    <link rel="stylesheet" href="components/angular-loading-bar/build/loading-bar.min.css">
+    <link rel="stylesheet" href="components/jquery-ui/themes/cupertino/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!-- endbuild -->
+
+</head>
+  <body class="" ng-app="app">
+    <!--[if lt IE 9]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div ng-show="!cookieConsent" class="cookie-consent" ng-controller="CookieConsentCtrl" ng-cloak>
+      <div ng-if="!cookieConsent">
+        <p>We place cookies on your device to make your use of this website better.
+        <!--For more information visit our <a href>Privacy Policy</a> page. -->
+        <button class="btn btn-success" ng-click="consent()">I understand</button></p>
+      </div>
+    </div>
+    <div class="wrapper" ui-view=""></div>
+
+    <!-- build:js -->
+    <script src="components/moment/moment.js"></script>
+    <script src="components/jquery/dist/jquery.min.js"></script>
+    <script src="components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="components/async/lib/async.js"></script>
+    <script src="components/angular/angular.js"></script>
+    <script src="components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="components/jquery/dist/jquery.js"></script>
+    <script src="components/lodash/dist/lodash.min.js"></script>
+    <script src="components/ngstorage/ngStorage.min.js"></script>
+    <script src="components/angular-ui-grid/ui-grid.js"></script>
+    <script src="components/angular-bootstrap-show-errors/src/showErrors.min.js"></script>
+    <script src="components/angular-ui-select/dist/select.min.js"></script>
+    <script src="components/angular-ui-date/src/date.js"></script>
+    <script src="components/angular-loading-bar/build/loading-bar.min.js"></script>
+    <script src="components/papaparse/papaparse.min.js"></script>
+    <script src="components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="components/angular-uuid-service/angular-uuid-service.min.js"></script>
+    <script src="components/ng-flow/dist/ng-flow-standalone.min.js"></script>
+
+    <script src="modules/login/login.module.js"></script>
+    <script src="modules/login/login.service.js"></script>
+    <script src="modules/logout/logout.module.js"></script>
+    <script src="modules/logout/logout.service.js"></script>
+    <script src="modules/navigation/navigation.module.js"></script>
+    <script src="modules/school-dashboard/dashboard.module.js"></script>
+    <script src="modules/school-dashboard/dashboard.service.js"></script>
+    <script src="modules/pearson-dashboard/dashboard.module.js"></script>
+    <script src="modules/cookieConsent/cookieConsent.module.js"></script>
+    <script src="modules/cookieConsent/localStorage.service.js"></script>
+    <script src="modules/courseSection/courseSection.module.js"></script>
+    <script src="modules/courseSection/courseSection.service.js"></script>
+    <script src="modules/courseSection/modals/courseSection.crud.controller.js"></script>
+    <script src="modules/courseSection/modals/courseSection.addStudent.controller.js"></script>
+    <script src="modules/courseSection/modals/courseSection.addTitle.controller.js"></script>
+    <script src="modules/courseSection/modals/courseSection.productDetails.controller.js"></script>
+    <script src="modules/courseSection/modals/courseSection.removeTitle.controller.js"></script>
+    <script src="modules/courseSection/modals/courseSection.removeStudent.controller.js"></script>
+    <script src="modules/user/user.module.js"></script>
+    <script src="modules/user/user.service.js"></script>
+    <script src="modules/user/user.modal.controller.js"></script>
+    <script src="modules/user/user.list.module.js"></script>
+    <script src="modules/user/modals/courseSection.controller.js"></script>
+    <script src="modules/admin/admin.module.js"></script>
+    <script src="modules/admin/admin.index.js"></script>
+    <script src="modules/admin/admin.service.js"></script>
+    <script src="modules/admin/modals/admin.addToSchool.js"></script>
+    <script src="modules/admin/modals/admin.removeFromSchool.js"></script>
+    <script src="modules/product/product.module.js"></script>
+    <script src="modules/product/product.list.module.js"></script>
+    <script src="modules/product/product.service.js"></script>
+    <script src="modules/product/modals/product.crud.controller.js"></script>
+    <script src="modules/product/modals/product.delete.controller.js"></script>
+    <script src="modules/license/license.module.js"></script>
+    <script src="modules/license/license.service.js"></script>
+    <script src="modules/license/modals/license.crud.modal.controller.js"></script>
+    <script src="modules/license/modals/license.remove.controller.js"></script>
+    <script src="modules/school/school.module.js"></script>
+    <script src="modules/school/school.service.js"></script>
+    <script src="modules/school/modals/school.add.controller.js"></script>
+    <script src="modules/book/book.module.js"></script>
+    <script src="modules/book/book.service.js"></script>
+    <script src="modules/book/modals/book.add.controller.js"></script>
+    <script src="modules/book/modals/book.remove.controller.js"></script>
+    <script src="scripts/common/filters/yes.no.js"></script>
+    <script src="scripts/common/filters/text.js"></script>
+    <script src="scripts/common/services/http.interceptor.js"></script>
+    <script src="scripts/common/services/modal.errorHandler.js"></script>
+    <script src="scripts/common/services/sse.js"></script>
+    <script src="scripts/ng-grid-paging.js"></script>
+    <script src="scripts/directives/csv-upload.js"></script>
+    <script src="scripts/app.js"></script>
+    <!-- endbuild -->
+    <div class="container footer">
+      <div class="col-sm-12">
+        <h6>
+          <!-- build:version -->
+          <!-- endbuild -->
+        </h6>
+      </div>
+    </div>
+    <script>
+    $.get( "utils/getbuild", function( data ) {
+        $("#buildId").html( data );
+      });
+    </script>
+</body>
+</html>
