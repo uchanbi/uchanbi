@@ -1,4 +1,4 @@
-project: Readerplus-dev
+project: readerplus-dev
 applications:
   - name: nodev1
     runtime: ubuntu-nodejs5x:1.2
