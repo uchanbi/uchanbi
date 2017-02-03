@@ -1,4 +1,4 @@
-project: Readerplu-dev
+project: readerplu-dev
 environments:
   - name: production
     namespace: readerplus-dev
