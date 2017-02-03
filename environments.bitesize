@@ -1,17 +1,48 @@
-# see https://mycloud.atlassian.net/wiki/display/BITE/Jenkins
 project: readerplus
-components:
-  - name: nodev1
-    os: linux
-    dependencies:
-      - type: debian-package
-        package: nodejs
-    repository:
-      git: git@github.com:geethaka/nodejsdemo.git
-      branch: master
-    build:
-      - shell: sudo mkdir -p /app
-      - shell: sudo cp -rf * /app
-      - shell: sudo /usr/local/bin/fpm -s dir -n node-app --iteration $(date "+%Y%m%d%H%M%S") -t deb /app
-    artifacts:
-      - location: "*.deb"
+environments:
+  - name: dev
+    namespace: readerplus-dev
+    deployment:
+      method: rolling-upgrade
+    services:
+      - name: test-app
+#        version: "1.2.5"
+        external_url: reader-dev.dev-bite.io
+        ssl: true
+        port: 3000
+        env:
+          - name: NODE_ENV
+            value: paas
+          - name: PAAS_ENV
+            value: dev
+          - name: hapi_port
+            value: "80"
+          - name: logger_filename
+            value: "/proc/self/fd/1"
+          - name: logger_level
+            value: "info"
+          - name: MONGO_DB_1
+            value: node-app
+          - name: MONGO_ADMIN_USER
+            value: moodle1
+          - name: MONGO_ADMIN_PASS
+            value: Pearson
+          - name: MONGO_DB_ADMIN_USER
+            value: moodle2
+          - name: MONGO_DB_ADMIN_PASS
+            value: Pearson
+      - name: mongo
+#        version: "1.0.1"
+        external_url: mongo-reader-dev.dev-bite.io
+        port: 27017
+        env:
+          - name: MONGO_DB_1
+            value: node-app
+          - name: MONGO_ADMIN_USER
+            value: moodle1
+          - name: MONGO_ADMIN_PASS
+            value: Pearson
+          - name: MONGO_DB_ADMIN_USER
+            value: moodle2
+          - name: MONGO_DB_ADMIN_PASS
+            value: Pearson

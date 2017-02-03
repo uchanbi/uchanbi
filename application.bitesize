@@ -1,13 +1,22 @@
-project: Readerplus-dev
+project: readerplus
 applications:
   - name: nodev1
     runtime: ubuntu-nodejs5x:1.2
-    version: "0.8.35"
+    version: 1.2.5
     dependencies:
       - name: node-app 
         type: debian-package
         origin:
           build: node-app
-        version: 1.0
-    command: "npm start"
-    
+        version: 1.2.5
+    command: "node /app/index.js"
+  - name: mongo
+    runtime: ubuntu-mongo3x:1.0
+#    version: 1.0.1
+    dependencies:
+      - name: mongo
+        type: debian-package
+        origin:
+          build: mongo
+#        version: 1.0.1
+    command: mongo_prov &

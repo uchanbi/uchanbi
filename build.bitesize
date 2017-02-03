@@ -1,13 +1,47 @@
-project: Readerplu-dev
-environments:
-  - name: production
-    namespace: readerplus-dev
-    deployment:
-      method: rolling-upgrade
-    services:
-      - name: node-app
-        #external_url: reader-dev.dev-bite.io
-        external_url: reader-dev.prsn-dev.io
-        port: 80 # this is the port number the application responds on in each container/instance/pod
-        ssl: "false"
-        replicas: 2
+project: readerplus
+components:
+  - name: node-app
+    version: 1.2.5
+    os: linux
+    dependencies:
+      - type: gem-package
+        package: fpm
+      - type: debian-package
+        package: rlwrap
+      - type: debian-package
+        package: build-essential
+      - type: debian-package
+        package: libkrb5-dev
+      - type: debian-package
+        package: nodejs
+        version: 5.9.0-1nodesource1~trusty1
+        location: https://deb.nodesource.com/node_5.x/pool/main/n/nodejs/nodejs_5.9.0-1nodesource1~trusty1_amd64.deb
+    repository:
+      git: git@github.com:AndyMoore111/test-app-v2.git
+      branch: master
+    build:
+      - shell: node --version
+      - shell: npm --version
+      - shell: "rm -f *.deb"
+      - shell: npm install node-app --prefix node-app
+      - shell: fpm -s dir -C node-app -t deb -n node-app -x "**/.git/**" -v 1.2.5-$(date "+%Y%m%d%H%M%S") --prefix /app .
+      - shell: ls -al
+    artifacts:
+      - location: "*.deb"
+  - name: mongo
+    version: 1.0.1
+    os: linux
+    dependencies:
+      - type: gem-package
+        package: fpm
+      - type: debian-package
+        package: rlwrap
+      - type: debian-package
+        package: build-essential
+    repository:
+      git: https://github.com/AndyMoore111/mongod_prov.git
+      branch: master
+    build:
+      - shell: fpm -s dir -t deb -n mongo -x "**/.git/**" -v 1.0.1-$(date "+%Y%m%d%H%M%S") --prefix /usr/local/bin .
+    artifacts:
+      - location: '*.deb'
