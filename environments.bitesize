@@ -1,4 +1,4 @@
-project: readerplus
+project: readerplus-test
 environments:
   - name: dev
     namespace: readerplus-dev

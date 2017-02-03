@@ -1,6 +1,6 @@
-project: readerplus
+project: readerplus-test
 applications:
-  - name: nodev1
+  - name: node-app
     runtime: ubuntu-nodejs5x:1.2
     version: 1.2.5
     dependencies:

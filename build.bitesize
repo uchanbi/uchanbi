@@ -1,4 +1,4 @@
-project: readerplus
+project: readerplus-test
 components:
   - name: node-app
     version: 1.2.5
