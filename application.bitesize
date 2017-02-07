@@ -9,7 +9,7 @@ applications:
         origin:
           build: node-app
         version: 1.2.5
-    command: "node /usr/local/pearson/app/gloss-web-readerplus/server"
+    command: "node server"
   - name: mongo
     runtime: ubuntu-mongo3x:1.0
 #    version: 1.0.1
