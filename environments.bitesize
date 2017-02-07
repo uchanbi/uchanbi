@@ -5,7 +5,7 @@ environments:
     deployment:
       method: rolling-upgrade
     services:
-      - name: test-app
+      - name: node-app
 #        version: "1.2.5"
         external_url: reader-dev.dev-bite.io
         ssl: true
