@@ -1,4 +1,4 @@
-project: readerplus-test
+project: readerplus-dev
 applications:
   - name: node-app
     runtime: ubuntu-nodejs4x:1.0
