@@ -14,8 +14,8 @@ components:
         package: libkrb5-dev
       - type: debian-package
         package: nodejs
-        version: nodejs-dbg_4.0.0-1nodesource1-sid1_amd64
-        location: https://deb.nodesource.com/node_4.x/pool/main/n/nodejs/nodejs-dbg_4.0.0-1nodesource1~sid1_amd64.deb
+        version: 5.9.0-1nodesource1~trusty1
+        location: https://deb.nodesource.com/node_5.x/pool/main/n/nodejs/nodejs_5.9.0-1nodesource1~trusty1_amd64.deb
     repository:
       git: https://github.com/uchanbi/test-01.git
       branch: master
