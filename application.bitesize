@@ -9,7 +9,7 @@ applications:
         origin:
           build: test-01
         version: 1.2.5
-    command: "node /app/server"
+    command: "node server"
   - name: mongo
     runtime: ubuntu-mongo3x:1.0
 #    version: 1.0.1
