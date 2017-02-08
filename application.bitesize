@@ -1,13 +1,13 @@
 project: readerplus-dev
 applications:
-  - name: node-app
+  - name: test-01
     runtime: ubuntu-nodejs4x:1.0
     version: 1.2.5
     dependencies:
-      - name: node-app 
+      - name: test-01 
         type: debian-package
         origin:
-          build: node-app
+          build: test-01
         version: 1.2.5
     command: "node server"
   - name: mongo

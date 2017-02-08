@@ -1,6 +1,6 @@
 project: readerplus-dev
 components:
-  - name: node-app
+  - name: test-01
     version: 1.2.5
     os: linux
     dependencies:
@@ -23,8 +23,8 @@ components:
       - shell: node --version
       - shell: npm --version
       - shell: "rm -f *.deb"
-      - shell: npm install node-app --prefix node-app
-      - shell: fpm -s dir -C node-app -t deb -n node-app -x "**/.git/**" -v 1.2.5-$(date "+%Y%m%d%H%M%S") --prefix /app .
+      - shell: npm install test-01 --prefix test-01
+      - shell: fpm -s dir -C test-01 -t deb -n test-01 -x "**/.git/**" -v 1.2.5-$(date "+%Y%m%d%H%M%S") --prefix /app .
       - shell: ls -al
     artifacts:
       - location: "*.deb"

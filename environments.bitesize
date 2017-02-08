@@ -5,7 +5,7 @@ environments:
     deployment:
       method: rolling-upgrade
     services:
-      - name: node-app
+      - name: test-01
 #        version: "1.2.5"
         external_url: reader-dev.dev-bite.io
         ssl: true
@@ -22,7 +22,7 @@ environments:
           - name: logger_level
             value: "info"
           - name: MONGO_DB_1
-            value: node-app
+            value: test-01
           - name: MONGO_ADMIN_USER
             value: moodle1
           - name: MONGO_ADMIN_PASS
@@ -37,7 +37,7 @@ environments:
         port: 27017
         env:
           - name: MONGO_DB_1
-            value: node-app
+            value: test-01
           - name: MONGO_ADMIN_USER
             value: moodle1
           - name: MONGO_ADMIN_PASS
