@@ -24,9 +24,9 @@ components:
       - shell: npm --version
       - shell: "rm -f *.deb"
       - shell: pwd
-      - shell: cd /home/jenkins/workspace/test-01/
-      - shell: npm install 
+      - shell: cd /home/jenkins/workspace/test-01/ 
       - shell: pwd
+      - shell: cd /home/jenkins/workspace
       - shell: ls -al
       - shell: fpm -s dir -C test-01 -t deb -n test-01 -x "**/.git/**" -v 1.2.5-$(date "+%Y%m%d%H%M%S") --prefix /app .
       - shell: ls -al
