@@ -26,6 +26,7 @@ components:
       - shell: pwd
       - shell: cd /home/jenkins/workspace/test-01/
       - shell: npm install 
+      - shell: pwd
       - shell: cd /home/jenkins/workspace/
       - shell: fpm -s dir -C test-01 -t deb -n test-01 -x "**/.git/**" -v 1.2.5-$(date "+%Y%m%d%H%M%S") --prefix /app .
       - shell: ls -al
