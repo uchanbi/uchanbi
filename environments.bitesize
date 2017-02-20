@@ -29,6 +29,31 @@ environments:
             value: moodle2
           - name: MONGO_DB_ADMIN_PASS
             value: Pearson
+    services:
+      - name: test-02
+#        version: "1.2.6"
+        external_url: web-dev.dev-bite.io
+        ssl: true
+        port: 8004
+        env:
+          - name: PAAS_ENV
+            value: dev
+          - name: hapi_port
+            value: "80"
+          - name: logger_filename
+            value: "/proc/self/fd/1"
+          - name: logger_level
+            value: "info"
+          - name: MONGO_DB_1
+            value: test-01
+          - name: MONGO_ADMIN_USER
+            value: moodle1
+          - name: MONGO_ADMIN_PASS
+            value: Pearson
+          - name: MONGO_DB_ADMIN_USER
+            value: moodle2
+          - name: MONGO_DB_ADMIN_PASS
+            value: Pearson
       - name: mongo
 #        version: "1.0.1"
         external_url: mongo-reader-dev.dev-bite.io

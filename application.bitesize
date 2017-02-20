@@ -10,6 +10,16 @@ applications:
           build: test-01
         version: 1.2.5
     command: "node /app/server/"
+  - name: test-02
+    runtime: ubuntu-nodejs4x:1.0
+    version: 1.2.6
+    dependencies:
+      - name: test-02 
+        type: debian-package
+        origin:
+          build: test-02
+        version: 1.2.6
+    command: "node index.js"
   - name: mongo
     runtime: ubuntu-mongo3x:1.0
 #    version: 1.0.1
