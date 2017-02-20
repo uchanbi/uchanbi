@@ -9,10 +9,8 @@ environments:
 #        version: "1.2.5"
         external_url: reader-dev.dev-bite.io
         ssl: true
-        port: 3000
+        port: 8004
         env:
-          - name: NODE_ENV
-            value: paas
           - name: PAAS_ENV
             value: dev
           - name: hapi_port
