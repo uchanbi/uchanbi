@@ -9,7 +9,7 @@ environments:
 #        version: "1.2.5"
         external_url: reader-dev.dev-bite.io
         ssl: true
-        port: 8004
+        port: 80
         env:
           - name: PAAS_ENV
             value: dev
