@@ -57,7 +57,7 @@ components:
       - shell: npm --version
       - shell: "rm -f *.deb"
       - shell: pwd
-      - shell: cd /home/jenkins/workspace/test-02/ 
+      - shell: cd /home/jenkins/workspace/test-02
       - shell: pwd
       - shell: npm install 
       - shell: cd /home/jenkins/workspace
