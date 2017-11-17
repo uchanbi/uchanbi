@@ -1,0 +1,79 @@
+FROM centos:6.8
+
+EXPOSE 8080 80 22 1521 
+RUN yum update -y 
+RUN yum install wget python java libaio vim net-tools iputils telnet mysql  -y 
+
+ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.el6_9.x86_64/jre
+ENV PATH $PATH:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.el6_9.x86_64/jre/bin:/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.151-1.b12.el6_9.x86_64//jre/bin
+
+WORKDIR /usr/local/
+RUN mkdir jboss6
+WORKDIR /usr/local/jboss6
+COPY jboss-eap-6.4.0 jboss-eap-6.4.0
+COPY oracle* /usr/local/jboss6/
+RUN rpm -ivh oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.rpm
+RUN rpm -ivh oracle-instantclient12.2-sqlplus-12.2.0.1.0-1.x86_64.rpm
+
+ENV ORACLE_HOME /usr/lib/oracle/12.1/client64
+ENV PATH $PATH:/usr/lib/oracle/12.1/client64:/usr/lib/oracle/12.1/client64
+
+
+
+WORKDIR /usr/local/jboss6/jboss-eap-6.4.0/jboss-eap-6.4/bin
+ENV JBOSS_HOME /usr/local/jboss6/jboss-eap-6.4.0/jboss-eap-6.4
+ENV PATH $PATH:/usr/local/jboss6/jboss-eap-6.4.0/jboss-eap-6.4:/usr/local/jboss6/jboss-eap-6.4.0/jboss-eap-6.4
+ENV LD_LIBRARY_PATH=$ORACLE_HOME/lib
+
+WORKDIR /usr/local/jboss6/jboss-eap-6.4.0/jboss-eap-6.4/standalone/deployments
+COPY helloworld.war helloworld.war
+
+WORKDIR /usr/local/jboss6/jboss-eap-6.4.0/jboss-eap-6.4/modules/
+RUN mkdir -p com/oracle/ojdbc/main
+RUN mkdir -p com/mysql/main
+
+
+COPY ojdbc7*  /usr/local/jboss6/jboss-eap-6.4.0/jboss-eap-6.4/modules/com/oracle/ojdbc/main/
+COPY module.xml /usr/local/jboss6/jboss-eap-6.4.0/jboss-eap-6.4/modules/com/oracle/ojdbc/main/
+COPY mysql-connector-java-5.1.44-bin*  /usr/local/jboss6/jboss-eap-6.4.0/jboss-eap-6.4/modules/com/mysql/main/
+COPY mysql/module* /usr/local/jboss6/jboss-eap-6.4.0/jboss-eap-6.4/modules/com/mysql/main/
+
+
+
+WORKDIR /usr/local/jboss6/jboss-eap-6.4.0/jboss-eap-6.4/standalone/configuration
+COPY standalone.xml standalone.xml
+
+
+COPY jboss6* /etc/rc.d/init.d/
+WORKDIR /etc/rc.d/init.d/
+RUN mv jboss6.txt jboss6 
+RUN chmod +x /etc/rc.d/init.d/jboss6
+RUN sed -i -e 's/\r//g' jboss6
+RUN chkconfig --add jboss6
+WORKDIR  /etc/rc.d/init.d/
+#RUN yum install mysql -y
+EXPOSE 3306
+WORKDIR /usr/local/jboss6/jboss-eap-6.4.0/jboss-eap-6.4/standalone
+
+
+RUN echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
+sed -i 's/.*requiretty$/Defaults !requiretty/' /etc/sudoers
+#RUN useradd -m jboss ; echo jboss: | chpasswd ; usermod -a -G wheel jboss
+RUN /usr/local/jboss6/jboss-eap-6.4.0/jboss-eap-6.4/bin/add-user.sh admin admin@2016 --silent
+RUN echo "JAVA_OPTS=\"\$JAVA_OPTS -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0\"" >> /usr/local/jboss6/jboss-eap-6.4.0/jboss-eap-6.4/bin/standalone.conf
+#RUN chown -R jboss:jboss /usr/local/jboss6
+
+ENTRYPOINT $JBOSS_HOME/bin/standalone.sh -c standalone.xml 
+ENV JBOSS_HOME /usr/local/jboss6/jboss-eap-6.4.0/jboss-eap-6.4/
+USER root
+RUN chgrp -R 0 $JBOSS_HOME &&\
+chmod -R g+rw $JBOSS_HOME
+CMD /bin/bash
+
+
+
+
+
+
+
+
